@@ -56,4 +56,34 @@ public class BookBST {
             inOrderRec(root.right);
         }
     }
+    public void delete(String isbn) {
+        root = deleteRec(root, isbn);
+    }
+
+    private BookNode deleteRec(BookNode root, String isbn) {
+        if (root == null) return root;
+
+        int compareResult = isbn.compareTo(root.isbn);
+
+        if (compareResult < 0) {
+            root.left = deleteRec(root.left, isbn);
+        } else if (compareResult > 0) {
+            root.right = deleteRec(root.right, isbn);
+        } else {
+            if (root.left == null) return root.right;
+            else if (root.right == null) return root.left;
+            root.isbn = minValue(root.right);
+            root.right = deleteRec(root.right, root.isbn);
+        }
+        return root;
+    }
+
+    private String minValue(BookNode root) {
+        String minv = root.isbn;
+        while (root.left != null) {
+            minv = root.left.isbn;
+            root = root.left;
+        }
+        return minv;
+    }
 }
