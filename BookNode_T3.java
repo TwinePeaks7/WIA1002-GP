@@ -5,6 +5,5 @@ public class BookNode_T3 {
     public BookNode_T3 left;
     public BookNode_T3 right;
 
-
     
 }
