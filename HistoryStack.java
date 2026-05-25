@@ -8,3 +8,13 @@ class HistoryStack {
         stack.push(b);
     }
 }
+
+public void display() {
+        // Guard clause to catch empty stacks
+        if (stack.isEmpty()) {
+            System.out.println("History is empty.");
+            return;
+          }
+    }
+}
+
