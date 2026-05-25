@@ -11,5 +11,4 @@ public class BookNode_T3 {
         this.left = null;
         this.right = null;
     }
-    
 }
