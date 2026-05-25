@@ -76,7 +76,4 @@ public class SmartLibrary implements LibraryADT{
             }
         }
     }
-    public static void main(String[]args){
-        
-    }
 }
