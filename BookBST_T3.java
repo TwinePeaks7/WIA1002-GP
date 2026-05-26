@@ -59,5 +59,35 @@ public class BookBST_T3 {
         return searchRec(node.right, isbn);
     }
 
+
     
+    // Delete a book from the BST
+    public void delete(int isbn) {
+        root = deleteRec(root, isbn);
+    }
+
+    private BookNode_T3 deleteRec(BookNode_T3 node, int isbn) {
+        if (node == null) {
+            return null;
+        }
+
+        if (isbn < node.book.getIsbn()) {
+            node.left = deleteRec(node.left, isbn);
+        } else if (isbn > node.book.getIsbn()) {
+            node.right = deleteRec(node.right, isbn);
+        } 
+        
+        else {
+            // Node with only one child or no child
+            if (node.left == null) {
+                return node.right;
+            } 
+            else if (node.right == null) {
+                return node.left;
+            }
+    
+
+
+
+
 }
