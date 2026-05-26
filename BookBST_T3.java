@@ -1,6 +1,7 @@
 package smartlibrary;
 
 public class BookBST_T3 {
+
      private BookNode_T3 root;
 
 
@@ -10,20 +11,25 @@ public class BookBST_T3 {
         root = insertRec(root, book);
     }
 
+
     private BookNode_T3 insertRec(BookNode_T3 node, Book book) {
         if (node == null) {
             return new BookNode_T3(book);
         }
+
         if (book.getIsbn() < node.book.getIsbn()) {
             node.left = insertRec(node.left, book);
-        } else if (book.getIsbn() > node.book.getIsbn()) {
+        } 
+        
+        else if (book.getIsbn() > node.book.getIsbn()) {
             node.right = insertRec(node.right, book);
         }
+
         return node;
     }
 
 
-    // ===== TASK 3: RECURSIVE SEARCH FUNCTION =====
+    // TASK 3: RECURSIVE SEARCH FUNCTION =====
     
     public Book search(int isbn) {
         return searchRec(root, isbn);
@@ -53,14 +59,13 @@ public class BookBST_T3 {
 
         }
 
-
         // Recursive case: search right subtree if isbn is larger
         
         return searchRec(node.right, isbn);
     }
 
 
-    
+
     // Delete a book from the BST
     public void delete(int isbn) {
         root = deleteRec(root, isbn);
@@ -73,21 +78,40 @@ public class BookBST_T3 {
 
         if (isbn < node.book.getIsbn()) {
             node.left = deleteRec(node.left, isbn);
-        } else if (isbn > node.book.getIsbn()) {
+        } 
+        
+        else if (isbn > node.book.getIsbn()) {
             node.right = deleteRec(node.right, isbn);
         } 
+        
         
         else {
             // Node with only one child or no child
             if (node.left == null) {
                 return node.right;
             } 
+
             else if (node.right == null) {
                 return node.left;
             }
     
 
+            // Node with two children: get the inorder successor
 
+            BookNode_T3 minRight = findMin(node.right);
+            node.book = minRight.book;
+            node.right = deleteRec(node.right, minRight.book.getIsbn());
+        }
 
+        return node;
+    }
 
+    private BookNode_T3 findMin(BookNode_T3 node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+
+        return node;
+    }
+    
 }
