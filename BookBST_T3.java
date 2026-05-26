@@ -60,7 +60,7 @@ public class BookBST_T3 {
     }
 
 
-    
+
     // Delete a book from the BST
     public void delete(int isbn) {
         root = deleteRec(root, isbn);
@@ -87,7 +87,20 @@ public class BookBST_T3 {
             }
     
 
+            // Node with two children: get the inorder successor
 
+            BookNode_T3 minRight = findMin(node.right);
+            node.book = minRight.book;
+            node.right = deleteRec(node.right, minRight.book.getIsbn());
+        }
+        return node;
+    }
 
+    private BookNode_T3 findMin(BookNode_T3 node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
 
 }
