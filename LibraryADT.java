@@ -5,4 +5,5 @@ public interface LibraryADT {
     void borrowBook(int isbn);
     void viewLatestHistory();
     void Menu();
+    void returnBook();
 }

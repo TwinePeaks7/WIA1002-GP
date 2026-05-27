@@ -1,12 +1,12 @@
 package smartlibrary;
 import java.util.Scanner;
 class BST{}
-class HistoryStack{}
+//class HistoryStack{}
 public class SmartLibrary implements LibraryADT{
-    private BST bst;
+    private BookBST_T3 bst;
     private HistoryStack history;
     public SmartLibrary(){
-        bst=new BST();
+        bst=new BookBST_T3();
         history=new HistoryStack();
     }
     @Override
@@ -28,7 +28,7 @@ public class SmartLibrary implements LibraryADT{
     public void borrowBook(int isbn){
         Book book=bst.search(isbn);
         if(book!=null){
-            history.push(book);
+            history.push(new BookNode(book.getIsbn()+"", book.getTitle(), book.getAuthor()));
             bst.delete(isbn);
             System.out.println("Book borrowed successfully.");
         }else{System.out.println("Not Found.");}
@@ -46,10 +46,11 @@ public class SmartLibrary implements LibraryADT{
             System.out.println("2.Search book by ISBN");
             System.out.println("3.Borrow book");
             System.out.println("4.View borrowing history");
-            System.out.println("5.Exit");
+            System.out.println("5.Return book");
+            System.out.println("6.Exit");
             System.out.print("Choice: ");
             int choice=scanner.nextInt();
-            if(choice==5)break;
+            if(choice==6)break;
             switch(choice){
                 case 1:
                     System.out.print("Enter ISBN: ");
@@ -71,9 +72,28 @@ public class SmartLibrary implements LibraryADT{
                 case 4:
                     viewLatestHistory();
                     break;
+                case 5: 
+                    returnBook();
+                    break;
                 default:
                     System.out.println("Invalid option.");
             }
         }
     }
+    @Override
+    public void returnBook() {
+    if (!history.isEmpty()) {
+        Book book = history.pop();
+        bst.insert(book);
+        System.out.println("Book returned successfully: " + book.getTitle());
+    } else {
+        System.out.println("No books to return.");
+    }
+}
+public static void main(String[] args) {
+    SmartLibrary library = new SmartLibrary();
+    library.Menu();   // start the menu loop
+}
+
+
 }

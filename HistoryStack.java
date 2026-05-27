@@ -1,3 +1,4 @@
+package smartlibrary;
 import java.util.Stack;
 
 // ======================================
@@ -32,4 +33,14 @@ class HistoryStack {
             System.out.println("[ISBN: " + b.isbn + "] " + b.title); 
         }
     }
+    public Book pop() {
+    if (stack.isEmpty()) return null;
+    BookNode node = stack.pop();
+    return new Book(Integer.parseInt(node.isbn), node.title, node.author);
+}
+
+public boolean isEmpty() {
+    return stack.isEmpty();
+}
+
 }
