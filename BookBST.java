@@ -1,3 +1,4 @@
+package smartlibrary;
 // File: BookBST.java
 public class BookBST {
     BookNode root;
@@ -86,4 +87,4 @@ public class BookBST {
         }
         return minv;
     }
-}
+} 
