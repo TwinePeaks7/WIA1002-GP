@@ -1,8 +1,8 @@
 package smartlibrary;
 
-public class BookBST_T3 {
+public class BookSearchBST {
 
-     private BookNode_T3 root;
+     private BookSearchNode root;
 
 
      // Insert a book into the BST
@@ -12,9 +12,9 @@ public class BookBST_T3 {
     }
 
 
-    private BookNode_T3 insertRec(BookNode_T3 node, Book book) {
+    private BookSearchNode insertRec(BookSearchNode node, Book book) {
         if (node == null) {
-            return new BookNode_T3(book);
+            return new BookSearchNode(book);
         }
 
         if (book.getIsbn() < node.book.getIsbn()) {
@@ -38,7 +38,7 @@ public class BookBST_T3 {
 
     // Recursive helper function to search by ISBN
 
-    private Book searchRec(BookNode_T3 node, int isbn) {
+    private Book searchRec(BookSearchNode node, int isbn) {
         
         // Base case: node is null (book not found)
 
@@ -71,7 +71,7 @@ public class BookBST_T3 {
         root = deleteRec(root, isbn);
     }
 
-    private BookNode_T3 deleteRec(BookNode_T3 node, int isbn) {
+    private BookSearchNode deleteRec(BookSearchNode node, int isbn) {
         if (node == null) {
             return null;
         }
@@ -98,7 +98,7 @@ public class BookBST_T3 {
 
             // Node with two children: get the inorder successor
 
-            BookNode_T3 minRight = findMin(node.right);
+            BookSearchNode minRight = findMin(node.right);
             node.book = minRight.book;
             node.right = deleteRec(node.right, minRight.book.getIsbn());
         }
@@ -106,7 +106,7 @@ public class BookBST_T3 {
         return node;
     }
 
-    private BookNode_T3 findMin(BookNode_T3 node) {
+    private BookSearchNode findMin(BookSearchNode node) {
         while (node.left != null) {
             node = node.left;
         }
