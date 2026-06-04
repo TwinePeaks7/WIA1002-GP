@@ -3,7 +3,6 @@ import java.util.Stack;
 
 // ======================================
 // Borrow History Class
-// Task 2 - Stack
 // ======================================
 class HistoryStack { 
 
