@@ -65,7 +65,7 @@ public class SmartLibrary implements LibraryADT{
             System.out.println("2. Search book by ISBN");
             System.out.println("3. Borrow book");
             System.out.println("4. View borrowing history");
-            System.out.println("5. Return book");
+            System.out.println("5. Return book & Fine Management");
             System.out.println("6. Display Full Catalogue");
             System.out.println("7. Exit");
             System.out.print("Choice: ");
